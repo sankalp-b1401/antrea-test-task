@@ -9,7 +9,7 @@ I have successfully completed the Antrea test task for LFX Mentorship Q1 while l
 
 ## Controller Workflow:
 
-![controller-workflow-diagram](workflow/controller-worflow.png)
+![controller-workflow-diagram](workflow/controller-workflow.png)
 
 ## Pod Traffic Capture Workflow:
 
