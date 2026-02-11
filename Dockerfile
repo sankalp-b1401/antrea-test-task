@@ -6,16 +6,15 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
+
 RUN CGO_ENABLED=0 GOOS=linux go build -o pcap-controller main.go
 
 FROM ubuntu:24.04
 
 RUN apt-get update && apt-get install -y \
     tcpdump \
-    util-linux \
     curl \
     ca-certificates \
-    procps \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CRICTL_VERSION="v1.30.0"
@@ -24,6 +23,7 @@ RUN curl -L "https://github.com/kubernetes-sigs/cri-tools/releases/download/${CR
     && rm -f crictl.tar.gz
 
 WORKDIR /app
+
 COPY --from=builder /app/pcap-controller /usr/local/bin/pcap-controller
 
 CMD ["/usr/local/bin/pcap-controller"]
