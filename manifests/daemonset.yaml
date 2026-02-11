@@ -19,7 +19,7 @@ spec:
       containers:
         - name: controller
           image: pcap-controller:latest
-          imagePullPolicy: Never =
+          imagePullPolicy: Never
           securityContext:
             privileged: true
           env:
